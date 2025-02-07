@@ -1,4 +1,4 @@
-import { Component, computed, signal, Input, input } from '@angular/core';
+import { Component, computed, signal, Input, input, Output, EventEmitter, output } from '@angular/core';
 
 import { DUMMY_USERS } from '../dummy-users';
 
@@ -14,8 +14,14 @@ import { DUMMY_USERS } from '../dummy-users';
 export class UserComponent {
 
   // using here this way when use Input-decorator
+  @Input({ required:true })  id!: string;
   @Input({ required: true }) avatar!: string; 
   @Input({ required: true }) name!: string; 
+  // usonf decorator
+  @Output() select = new EventEmitter<string>();
+
+  //select = output<string>();
+
 
   // here using with input function
   // avatar = input<string>(''); // <T generics>
@@ -39,6 +45,9 @@ export class UserComponent {
     // here using signal to event-change
     // const randonIndex = Math.floor(Math.random() * DUMMY_USERS.length);
     // this.selectedUser.set(DUMMY_USERS[randonIndex]);    
+
+    this.select.emit(this.id);
+
   }
 
 }
