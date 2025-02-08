@@ -1,6 +1,8 @@
 import { Component, computed, signal, Input, input, Output, EventEmitter, output } from '@angular/core';
+import { type User } from './user.model';
 
-import { DUMMY_USERS } from '../dummy-users';
+
+//import { DUMMY_USERS } from '../dummy-users';
 
 //const randonIndex = Math.floor(Math.random() * DUMMY_USERS.length)
 
@@ -9,12 +11,6 @@ import { DUMMY_USERS } from '../dummy-users';
 //   avatar: string;
 //   name: string;
 // }
-
-interface User {
-  id: string;
-  avatar: string;
-  name: string;
-}
 
 @Component({
   selector: 'app-user',
@@ -25,6 +21,7 @@ interface User {
 export class UserComponent {
 
   @Input({ required:true }) user!: User ;
+  @Input({ required:true }) selected!: boolean;
 
   // using here this way when use Input-decorator
   // @Input({ required:true })  id!: string;
